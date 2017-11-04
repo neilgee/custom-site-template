@@ -45,6 +45,11 @@ if ! $(noroot wp core is-installed); then
   fi
 
   noroot wp core ${INSTALL_COMMAND} --url="${DOMAIN}" --quiet --title="${SITE_TITLE}" --admin_name=admin --admin_email="support@websitelove.com.au" --admin_password="password"
+  
+  # Update permalink structure
+  echo "Updating permalinks..."
+  noroot wp rewrite structure '/%postname%/'
+  
 else
   echo "Updating WordPress Stable..."
   cd ${VVV_PATH_TO_SITE}/public_html
